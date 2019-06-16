@@ -29,5 +29,7 @@ public class IOCApplicationContext {
         context.refresh();
         final PetStoreService petStoreService = context.getBean("petStore", PetStoreService.class);
         System.out.println(petStoreService.getUserNameList());
+        System.out.println(context.getBean("petStoreService", PetStoreService.class).getUserNameList());
+        System.out.println(context.getBean("service", PetStoreService.class).getUserNameList());
     }
 }
