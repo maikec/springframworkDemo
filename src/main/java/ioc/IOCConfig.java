@@ -18,10 +18,10 @@ import org.springframework.context.annotation.Configuration;
  *  @date 2019/6/16
  */
 @Configuration
-//@ComponentScan
+//@ComponentScan(basePackages = "ioc")
 public class IOCConfig {
     @Bean
-    public PetStoreService petStoreService(){
+    public PetStoreService petStoreService2(){
         return new PetStoreServiceImpl();
     }
 
@@ -30,5 +30,7 @@ public class IOCConfig {
         configApplicationContext.scan("ioc");
         configApplicationContext.refresh();
         System.out.println(configApplicationContext.getBean("petStoreService", PetStoreService.class).getUserNameList());
+        System.out.println(configApplicationContext.getBean("petStoreService2", PetStoreService.class).getUserNameList());
+
     }
 }
