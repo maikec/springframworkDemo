@@ -9,6 +9,7 @@ package ioc;/**
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
  *  @date 2019/6/16
  */
 @Configuration
+//@ComponentScan
 public class IOCConfig {
     @Bean
     public PetStoreService petStoreService(){
