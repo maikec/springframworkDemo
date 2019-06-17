@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 //@ComponentScan(basePackages = "ioc")
 public class IOCConfig {
-    @Bean
+    @Bean(initMethod = "init",destroyMethod = "destroy")
     public PetStoreService petStoreService2(){
         return new PetStoreServiceImpl();
     }
@@ -31,6 +31,6 @@ public class IOCConfig {
         configApplicationContext.refresh();
         System.out.println(configApplicationContext.getBean("petStoreService", PetStoreService.class).getUserNameList());
         System.out.println(configApplicationContext.getBean("petStoreService2", PetStoreService.class).getUserNameList());
-
+        configApplicationContext.close();
     }
 }

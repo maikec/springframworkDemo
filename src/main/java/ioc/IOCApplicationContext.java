@@ -31,5 +31,6 @@ public class IOCApplicationContext {
         System.out.println(petStoreService.getUserNameList());
         System.out.println(context.getBean("petStoreService", PetStoreService.class).getUserNameList());
         System.out.println(context.getBean("service", PetStoreService.class).getUserNameList());
+        context.registerShutdownHook();
     }
 }

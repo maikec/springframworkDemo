@@ -7,6 +7,10 @@ ApplicationContext表示Spring IOC，并负责对象的实例化、装配；spri
 1、XML  
 2、Annotation-based configuration（spring2.5）  
 3、Java code(spring3.0)[@Configuration, @Bean, @Import, and @DependsOn]  
+##bean lifecycle  
+InitializingBean DisposableBean  
+@PostConstruct and @PreDestroy  
+init-method and destroy-method
 ## Bean  
 **bean的定义是通过Spring 容器的BeanDefinition**
 <table>

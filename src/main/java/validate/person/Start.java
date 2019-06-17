@@ -30,8 +30,5 @@ public class Start{
 
 
         personController.getVOByName(new PersonVO(null,10),new MapBindingResult(new HashMap<String,String>(),"name"));
-        while (true){
-
-        }
     }
 }

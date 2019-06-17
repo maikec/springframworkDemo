@@ -20,4 +20,6 @@ public interface PetStoreService {
      * @return
      */
     List<String> getUserNameList();
+    void init();
+    void destroy();
 }
