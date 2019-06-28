@@ -1,5 +1,5 @@
 # spring 示例、原理、使用场景
-## IOC
+## 1.IOC
 **ioc也被称为DI，即对象之间的依赖关系只能通过构成方法、工厂方法、或者之后的set 属性来创建。**  
 **Spring IOC 基于beans和context两个包实现，主要的由BeanFactory接口及其子接口ApplicationContext实现**  
 ApplicationContext表示Spring IOC，并负责对象的实例化、装配；spring容器通过获取对象的元数据(通过XML、注解、javaCode)而获取到对象是结构  
@@ -301,4 +301,70 @@ public void processBlackListEvent(BlackListEvent event) {
 </tbody>
 <table>
 
-## Resources
+## 2.Resources
+Resource InputStreamSource  
+ResourceLoader ResourceLoaderAware  
+<table>
+<thead>
+<td>Prefix</td>
+<td>Example</td>
+<td>Explanation</td>
+</thead>
+<tbody>
+<tr>
+<td>classpath:</td>
+<td>classpath:com/myapp/config.xml</td>
+<td>Loaded from the classpath.</td>
+</tr>
+<tr>
+<td>file:</td>
+<td>file:///data/config.xml</td>
+<td>Loaded as a URL from the filesystem. See also FileSystemResource Caveats.</td>
+</tr>
+<tr>
+<td>http:</td>
+<td>https://myserver/logo.png</td>
+<td>Loaded as a URL.</td>
+</tr>
+<tr>
+<td>(none)</td>
+<td>/data/config.xml</td>
+<td>Depends on the underlying ApplicationContext.</td>
+</tr>
+</tbody>
+</table>
+
+## 3.Validation, Data Binding, and Type Conversion
+BeanWrapper DataBinder...
+## 4.SpEL
+*The expression language supports the following functionality:*
+* Literal expressions
+* Boolean and relational operators
+* Regular expressions
+* Class expressions
+* Accessing properties, arrays, lists, and maps
+* Method invocation
+* Relational operators
+* Assignment
+* Calling constructors
+* Bean references
+* Array construction
+* Inline lists
+* Inline maps
+* Ternary operator
+* Variables
+* User-defined functions
+* Collection projection
+* Collection selection
+* Templated expressions
+
+@Value("#{ systemProperties['user.region'] }")
+    private String defaultLocale;
+    
+ @Value("#{ systemProperties['user.region'] }")
+    public void setDefaultLocale(String defaultLocale) {
+        this.defaultLocale = defaultLocale;
+    }    
+    
+## 5.Aspect Oriented Programming with Spring
+**The key unit of modularity in OOP is the class, whereas in AOP the unit of modularity is the aspect**
