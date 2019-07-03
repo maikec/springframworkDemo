@@ -368,3 +368,102 @@ BeanWrapper DataBinder...
     
 ## 5.Aspect Oriented Programming with Spring
 **The key unit of modularity in OOP is the class, whereas in AOP the unit of modularity is the aspect**
+* AOP Concepts  
+**1.Aspect(@Aspect,**
+**``` <aop:config>
+       <aop:aspect id="myAspect" ref="aBean">
+           ...
+       </aop:aspect>
+   </aop:config> ```
+)**    
+A modularization of a concern that cuts across multiple classes. 
+Transaction management is a good example of a crosscutting concern in enterprise Java applications.  
+**2.Join point**
+ A point during the execution of a program, such as the execution of a method or the handling of an exception. 
+ In Spring AOP, a join point always represents a method execution
+**3.Advice**
+Action taken by an aspect at a particular join point. 
+Different types of advice include “around”, “before” and “after” advice. (Advice types are discussed later.) 
+Many AOP frameworks, including Spring, model an advice as an interceptor 
+and maintain a chain of interceptors around the join point. 
+**4.Pointcut**
+A predicate that matches join points.
+Advice is associated with a pointcut expression and runs at any join point matched by the pointcut 
+(for example, the execution of a method with a certain name)
+**5.Target object**
+ An object being advised by one or more aspects
+**6.AOP proxy** 
+ An object created by the AOP framework in order to implement the aspect contracts (advise method executions and so on).
+  In the Spring Framework, an AOP proxy is a JDK dynamic proxy or a CGLIB proxy
+ **7.Weaving**
+ linking aspects with other application types or objects to create an advised object. This can be done at compile time
+  (using the AspectJ compiler, for example), load time, or at runtime. Spring AOP,
+   like other pure Java AOP frameworks, performs weaving at runtime.
+ * Spring AOP advice
+ <table>
+ <thead>
+ <td>advice type</td>
+ <td>描述</td>
+ </thead>
+ <tbody>
+ <tr>
+ <td> Before advice</td>
+ <td>Advice that runs before a join point but that does not have the ability to prevent execution flow proceeding to the join point (unless it throws an exception).
+ </td>
+ </tr>
+<tr>
+<td> After returning advice</td>
+<td>Advice to be run after a join point completes normally (for example, if a method returns without throwing an exception).
+</td>
+</tr>
+<tr>
+<td>After throwing advice</td>
+<td>Advice to be executed if a method exits by throwing an exception.</td>
+</tr>
+<tr>
+<td>After (finally) advice</td>
+<td>Advice to be executed regardless of the means by which a join point exits (normal or exceptional return).
+</td>
+</tr>
+<tr>
+<td> Around advice</td>
+<td>Advice that surrounds a join point such as a method invocation. This is the most powerful kind of advice. Around advice can perform custom behavior before and after the method invocation. It is also responsible for choosing whether to proceed to the join point or to shortcut the advised method execution by returning its own return value or throwing an exception
+</td>
+</tr>
+</tbody>
+</table>
+
+* Spring AOP Capabilities and Goals
+Spring AOP is implemented in pure Java (纯Java实现) 
+Spring AOP currently supports only method execution join points (advising the execution of methods on Spring beans)
+* AOP Proxies
+Spring AOP defaults to using standard JDK dynamic proxies for AOP proxies.
+ This enables any interface (or set of interfaces) to be proxied
+* @AspectJ support
+@EnableAspectJAutoProxy @Aspect @Pointcut    
+
+@Configuration
+@EnableAspectJAutoProxy
+public class AppConfig {
+
+<aop:aspectj-autoproxy/>
+
+**Spring AOP supports the following AspectJ pointcut designators (PCD) for use in pointcut expressions:**
+
+* execution: For matching method execution join points. This is the primary pointcut designator to use when working with Spring AOP.
+
+* within: Limits matching to join points within certain types (the execution of a method declared within a matching type when using Spring AOP).
+
+* this: Limits matching to join points (the execution of methods when using Spring AOP) where the bean reference (Spring AOP proxy) is an instance of the given type.
+
+* target: Limits matching to join points (the execution of methods when using Spring AOP) where the target object (application object being proxied) is an instance of the given type.
+
+* args: Limits matching to join points (the execution of methods when using Spring AOP) where the arguments are instances of the given types.
+
+* @target: Limits matching to join points (the execution of methods when using Spring AOP) where the class of the executing object has an annotation of the given type.
+
+* @args: Limits matching to join points (the execution of methods when using Spring AOP) where the runtime type of the actual arguments passed have annotations of the given types.
+
+* @within: Limits matching to join points within types that have the given annotation (the execution of methods declared in types with the given annotation when using Spring AOP).
+
+* @annotation: Limits matching to join points where the subject of the join point (the method being executed in Spring AOP) has the given annotation
